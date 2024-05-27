@@ -13,14 +13,14 @@ app.use(cors());
 app.use(express.json());
 
 // Other imports and middleware
-const authRoutes = require('./routes/authRoutes');
-const workoutRoutes = require('./routes/workoutRoutes');
 const exerciseRoutes = require('./routes/exerciseRoutes');
+const workoutRoutes = require('./routes/workoutRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/workouts', workoutRoutes);
 app.use('/api/exercises', exerciseRoutes);
+app.use('/api/workouts', workoutRoutes);
 
 // Default route
 app.get('/', (req, res) => {

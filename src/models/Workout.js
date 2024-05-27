@@ -12,9 +12,19 @@ const workoutSchema = new mongoose.Schema({
   },
   exercises: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Exercise',
-      required: true,
+      exercise: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Exercise',
+        required: true,
+      },
+      sets: {
+        type: Number,
+        required: true,
+      },
+      reps: {
+        type: Number,
+        required: true,
+      },
     },
   ],
   notes: {

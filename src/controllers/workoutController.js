@@ -1,5 +1,4 @@
 const Workout = require('../models/Workout');
-const Exercise = require('../models/Exercise');
 
 exports.createWorkout = async (req, res) => {
   const { exercises, notes } = req.body;
@@ -19,7 +18,7 @@ exports.createWorkout = async (req, res) => {
 
 exports.getWorkouts = async (req, res) => {
   try {
-    const workouts = await Workout.find({ user: req.user.id }).sort({ date: -1 });
+    const workouts = await Workout.find({ user: req.user.id }).populate('exercises.exercise').sort({ date: -1 });
     res.json(workouts);
   } catch (err) {
     console.error(err.message);
