@@ -2,7 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
+const exerciseRoutes = require('./routes/exerciseRoutes');
+const workoutRoutes = require('./routes/workoutRoutes');
 
+// Initialize the app
 const app = express();
 
 // Connect to the database
@@ -11,11 +15,6 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// Other imports and middleware
-const exerciseRoutes = require('./routes/exerciseRoutes');
-const workoutRoutes = require('./routes/workoutRoutes');
-const authRoutes = require('./routes/authRoutes');
 
 // Routes
 app.use('/api/auth', authRoutes);
