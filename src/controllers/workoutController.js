@@ -96,7 +96,7 @@ exports.deleteWorkout = async (req, res) => {
     if (workout.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
-    await workout.remove();
+    await Workout.deleteOne({ _id: req.params.id });
     res.status(200).json({ msg: 'Workout removed' });
   } catch (err) {
     console.error(err.message);

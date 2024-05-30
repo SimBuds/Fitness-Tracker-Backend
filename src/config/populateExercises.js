@@ -131,6 +131,42 @@ const exercises = [
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Barbell-Deadlift-1.png?ezimgfmt=ng%3Awebp%2Fngcb4',
     video: 'https://www.youtube.com/watch?v=op9kVnSso6Q',
   },
+  {
+    name: 'Bench Press',
+    workout_type: 'Chest',
+    description: 'An upper body exercise that targets the chest, shoulders, and triceps.',
+    steps: [
+      'Lie on a bench with your feet flat on the ground.',
+      'Grip the barbell with your hands slightly wider than shoulder-width apart.',
+      'Lower the barbell to your chest, then press it back up to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2017/07/close-grip-barbell-bench-press-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=SCVCLChPQFY',
+  },
+  {
+    name: 'Tricep Dip',
+    workout_type: 'Arms',
+    description: 'An upper body exercise that targets the triceps.',
+    steps: [
+      'Sit on a bench with your hands next to your hips.',
+      'Lift your body off the bench and walk your feet out in front of you.',
+      'Lower your body by bending your elbows, then press back up to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Triceps-Dip-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=6MwtkyNC2ZY',
+  },
+  {
+    name: 'Leg Press',
+    workout_type: 'Legs',
+    description: 'A lower body exercise that targets the quadriceps, hamstrings, and glutes.',
+    steps: [
+      'Sit on the leg press machine with your feet shoulder-width apart.',
+      'Press the platform away from you by extending your knees.',
+      'Lower the platform back to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Sled-45-degree-Leg-Press-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ',
+  }
 ];
 
 // Function to populate the exercises collection
