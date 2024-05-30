@@ -2,8 +2,15 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+// Register a new user
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
+
+  // Input validation
+  if (!name || !email || !password) {
+    return res.status(400).json({ msg: 'Please enter all fields' });
+  }
+
   try {
     let user = await User.findOne({ email });
     if (user) {
@@ -16,7 +23,7 @@ exports.register = async (req, res) => {
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+      res.status(201).json({ token });
     });
   } catch (err) {
     console.error(err.message);
@@ -24,8 +31,15 @@ exports.register = async (req, res) => {
   }
 };
 
+// Login a user
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
+  // Input validation
+  if (!email || !password) {
+    return res.status(400).json({ msg: 'Please enter all fields' });
+  }
+
   try {
     let user = await User.findOne({ email });
     if (!user) {
@@ -40,10 +54,15 @@ exports.login = async (req, res) => {
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+      res.status(200).json({ token });
     });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
+};
+
+// Logout a user
+exports.logout = (req, res) => {
+  res.status(200).send('User logged out');
 };

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Exercise = require('../models/Exercise');
 const connectDB = require('./db');
 
+// Bootstrap exercise data
 const exercises = [
   {
     name: 'Push-Up',
@@ -13,7 +14,8 @@ const exercises = [
       'Lower your body until your chest nearly touches the floor.',
       'Push back up to the starting position.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Pushup.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/push-up-tall-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=IODxDxX7oi4',
   },
   {
     name: 'Pull-Up',
@@ -24,7 +26,8 @@ const exercises = [
       'Pull yourself up until your chin is above the bar.',
       'Lower yourself back down to the starting position.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/US_Navy_030618-N-5319A-003_Aircrewman_assigned_to_the_Golden_Falcons_of_Helicopter_Anti-Submarine_Squadron_Two_%28HS-2%29_performs_a_pull-up.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/pull-up-2-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g',
   },
   {
     name: 'Squat',
@@ -35,7 +38,8 @@ const exercises = [
       'Bend your knees and lower your body until your thighs are parallel to the ground.',
       'Push back up to the starting position.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Squat.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2021/06/Hack-squat.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=ultWZbUMPL8',
   },
   {
     name: 'Plank',
@@ -46,7 +50,8 @@ const exercises = [
       'Hold your body in a straight line from head to heels.',
       'Engage your core and hold the position for the desired amount of time.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Plank.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/Front-Plank-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c',
   },
   {
     name: 'Burpee',
@@ -59,7 +64,8 @@ const exercises = [
       'Perform a push-up, then jump your feet back to the squat position.',
       'Jump up explosively into the air.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Burpee.gif',
+    image: 'https://yakkafit.wordpress.com/wp-content/uploads/2013/05/burpee-1.jpg',
+    video: 'https://www.youtube.com/watch?v=JZQA08SlJnM',
   },
   {
     name: 'Lunge',
@@ -71,7 +77,8 @@ const exercises = [
       'Push back up to the starting position.',
       'Repeat on the other side.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Lunge.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2018/11/Lunge-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=QOVaHwm-Q6U',
   },
   {
     name: 'Bicycle Crunch',
@@ -83,7 +90,8 @@ const exercises = [
       'Rotate your torso to bring your right elbow towards your left knee while straightening your right leg.',
       'Repeat on the other side.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Bicycle_crunches.gif',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/11/bicycle-crunch-resized-1.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=9FGilxCbdz8',
   },
   {
     name: 'Dumbbell Shoulder Press',
@@ -94,7 +102,9 @@ const exercises = [
       'Press the dumbbells overhead until your arms are fully extended.',
       'Lower the dumbbells back to the starting position.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Dumbbell_shoulder_press_1.png',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2021/09/Seated-dumbbell-one-arm-shoulder-press.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=HzIiNhHhhtA',
+    
   },
   {
     name: 'Russian Twist',
@@ -105,7 +115,8 @@ const exercises = [
       'Lean back slightly and twist your torso to the right, then to the left.',
       'Repeat for the desired number of reps.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Russian_twist.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2022/10/Dumbbell-Russian-Twist-on-stability-ball.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=wkD8rjkodUI',
   },
   {
     name: 'Deadlift',
@@ -117,10 +128,12 @@ const exercises = [
       'Lift the barbell by extending your hips and knees.',
       'Lower the barbell back to the starting position.',
     ],
-    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Deadlift.jpg',
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Barbell-Deadlift-1.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=op9kVnSso6Q',
   },
 ];
 
+// Function to populate the exercises collection
 const populateExercises = async () => {
   try {
     await connectDB();
@@ -129,9 +142,10 @@ const populateExercises = async () => {
     console.log('Exercise data populated successfully');
     process.exit();
   } catch (err) {
-    console.error(err);
+    console.error('Failed to populate exercise data:', err);
     process.exit(1);
   }
 };
 
+// Execute the function
 populateExercises();

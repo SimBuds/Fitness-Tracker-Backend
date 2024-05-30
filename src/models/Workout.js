@@ -20,10 +20,12 @@ const workoutSchema = new mongoose.Schema({
       sets: {
         type: Number,
         required: true,
+        min: [1, 'Sets must be at least 1'],
       },
       reps: {
         type: Number,
         required: true,
+        min: [1, 'Reps must be at least 1'],
       },
     },
   ],

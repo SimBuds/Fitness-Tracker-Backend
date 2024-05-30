@@ -21,6 +21,10 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  video: {
+    type: String,
+    required: false,
+  },
 });
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);
