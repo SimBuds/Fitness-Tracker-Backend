@@ -1,7 +1,7 @@
 const Workout = require('../models/Workout');
 
 // Get all workouts for the logged-in user
-exports.getWorkouts = async (req, res) => {
+exports.getWorkouts = async (req, res, next) => {
   try {
     const workouts = await Workout.find({ user: req.user.id })
       .populate('exercises.exercise')
@@ -9,12 +9,12 @@ exports.getWorkouts = async (req, res) => {
     res.status(200).json(workouts);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Get a specific workout by ID
-exports.getWorkoutById = async (req, res) => {
+exports.getWorkoutById = async (req, res, next) => {
   try {
     const workout = await Workout.findById(req.params.id).populate('exercises.exercise');
     if (!workout) {
@@ -26,15 +26,14 @@ exports.getWorkoutById = async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Workout not found' });
     }
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Create a new workout
-exports.createWorkout = async (req, res) => {
+exports.createWorkout = async (req, res, next) => {
   const { exercises, notes } = req.body;
 
-  // Input validation
   if (!exercises || exercises.length === 0) {
     return res.status(400).json({ msg: 'Exercises are required' });
   }
@@ -49,15 +48,14 @@ exports.createWorkout = async (req, res) => {
     res.status(201).json(workout);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Update a workout
-exports.updateWorkout = async (req, res) => {
+exports.updateWorkout = async (req, res, next) => {
   const { exercises, notes } = req.body;
 
-  // Input validation
   if (!exercises || exercises.length === 0) {
     return res.status(400).json({ msg: 'Exercises are required' });
   }
@@ -82,12 +80,12 @@ exports.updateWorkout = async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Workout not found' });
     }
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Delete a workout
-exports.deleteWorkout = async (req, res) => {
+exports.deleteWorkout = async (req, res, next) => {
   try {
     const workout = await Workout.findById(req.params.id);
     if (!workout) {
@@ -103,6 +101,6 @@ exports.deleteWorkout = async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Workout not found' });
     }
-    res.status(500).send('Server error');
+    next(err);
   }
 };

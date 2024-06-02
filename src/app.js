@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const exerciseRoutes = require('./routes/exerciseRoutes');
 const workoutRoutes = require('./routes/workoutRoutes');
+const errorHandler = require('./middleware/errorHandler');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('tiny'));
+app.use(errorHandler);
 
 // Routes
 app.use('/api/user', userRoutes);

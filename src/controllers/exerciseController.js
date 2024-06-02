@@ -1,7 +1,7 @@
 const Exercise = require('../models/Exercise');
 
 // Get all exercises, grouped by workout_type
-exports.getExercises = async (req, res) => {
+exports.getExercises = async (req, res, next) => {
   try {
     const exercises = await Exercise.find();
     const groupedExercises = exercises.reduce((acc, exercise) => {
@@ -15,12 +15,12 @@ exports.getExercises = async (req, res) => {
     res.status(200).json(groupedExercises);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Get a specific exercise by ID
-exports.getExerciseById = async (req, res) => {
+exports.getExerciseById = async (req, res, next) => {
   try {
     const exercise = await Exercise.findById(req.params.id);
     if (!exercise) {
@@ -32,15 +32,14 @@ exports.getExerciseById = async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Exercise not found' });
     }
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Create a new exercise
-exports.createExercise = async (req, res) => {
+exports.createExercise = async (req, res, next) => {
   const { name, workout_type, description, steps, image, video } = req.body;
 
-  // Input validation
   if (!name || !workout_type) {
     return res.status(400).json({ msg: 'Name and workout type are required' });
   }
@@ -59,6 +58,6 @@ exports.createExercise = async (req, res) => {
     res.status(201).json(exercise);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };

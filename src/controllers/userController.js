@@ -1,14 +1,15 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 
 // Register a new user
-exports.register = async (req, res) => {
+exports.register = async (req, res, next) => {
   const { name, email, password } = req.body;
 
-  // Input validation
-  if (!name || !email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
@@ -22,22 +23,21 @@ exports.register = async (req, res) => {
 
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
-      if (err) throw err;
+      if (err) return next(err);
       res.status(201).json({ token });
     });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Login a user
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  // Input validation
-  if (!email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
@@ -53,16 +53,19 @@ exports.login = async (req, res) => {
 
     const payload = { user: { id: user.id } };
     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
-      if (err) throw err;
+      if (err) return next(err);
       res.status(200).json({ token });
     });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    next(err);
   }
 };
 
 // Logout a user
-exports.logout = (req, res) => {
-  res.status(200).send('User logged out');
+exports.logout = (req, res, next) => {
+  try {
+    res.status(200).json({ msg: 'User logged out' });
+  } catch (err) {
+    next(err);
+  }
 };
