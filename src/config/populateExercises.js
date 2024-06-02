@@ -1,5 +1,4 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 const Exercise = require('../models/Exercise');
 const connectDB = require('./db');
 
@@ -15,7 +14,7 @@ const exercises = [
       'Push back up to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/push-up-tall-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=IODxDxX7oi4',
+    video: 'https://www.youtube.com/watch?v=IODxDxX7oi4'
   },
   {
     name: 'Pull-Up',
@@ -27,7 +26,7 @@ const exercises = [
       'Lower yourself back down to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/pull-up-2-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g',
+    video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g'
   },
   {
     name: 'Squat',
@@ -39,7 +38,7 @@ const exercises = [
       'Push back up to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2021/06/Hack-squat.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=ultWZbUMPL8',
+    video: 'https://www.youtube.com/watch?v=ultWZbUMPL8'
   },
   {
     name: 'Plank',
@@ -51,7 +50,7 @@ const exercises = [
       'Engage your core and hold the position for the desired amount of time.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/Front-Plank-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c',
+    video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c'
   },
   {
     name: 'Burpee',
@@ -65,7 +64,7 @@ const exercises = [
       'Jump up explosively into the air.',
     ],
     image: 'https://yakkafit.wordpress.com/wp-content/uploads/2013/05/burpee-1.jpg',
-    video: 'https://www.youtube.com/watch?v=JZQA08SlJnM',
+    video: 'https://www.youtube.com/watch?v=JZQA08SlJnM'
   },
   {
     name: 'Lunge',
@@ -78,7 +77,7 @@ const exercises = [
       'Repeat on the other side.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2018/11/Lunge-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=QOVaHwm-Q6U',
+    video: 'https://www.youtube.com/watch?v=QOVaHwm-Q6U'
   },
   {
     name: 'Bicycle Crunch',
@@ -91,7 +90,7 @@ const exercises = [
       'Repeat on the other side.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/11/bicycle-crunch-resized-1.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=9FGilxCbdz8',
+    video: 'https://www.youtube.com/watch?v=9FGilxCbdz8'
   },
   {
     name: 'Dumbbell Shoulder Press',
@@ -103,7 +102,7 @@ const exercises = [
       'Lower the dumbbells back to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2021/09/Seated-dumbbell-one-arm-shoulder-press.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=HzIiNhHhhtA',
+    video: 'https://www.youtube.com/watch?v=HzIiNhHhhtA'
     
   },
   {
@@ -116,7 +115,7 @@ const exercises = [
       'Repeat for the desired number of reps.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2022/10/Dumbbell-Russian-Twist-on-stability-ball.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=wkD8rjkodUI',
+    video: 'https://www.youtube.com/watch?v=wkD8rjkodUI'
   },
   {
     name: 'Deadlift',
@@ -129,7 +128,7 @@ const exercises = [
       'Lower the barbell back to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Barbell-Deadlift-1.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=op9kVnSso6Q',
+    video: 'https://www.youtube.com/watch?v=op9kVnSso6Q'
   },
   {
     name: 'Bench Press',
@@ -141,7 +140,7 @@ const exercises = [
       'Lower the barbell to your chest, then press it back up to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2017/07/close-grip-barbell-bench-press-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=SCVCLChPQFY',
+    video: 'https://www.youtube.com/watch?v=SCVCLChPQFY'
   },
   {
     name: 'Tricep Dip',
@@ -153,7 +152,7 @@ const exercises = [
       'Lower your body by bending your elbows, then press back up to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Triceps-Dip-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=6MwtkyNC2ZY',
+    video: 'https://www.youtube.com/watch?v=6MwtkyNC2ZY'
   },
   {
     name: 'Leg Press',
@@ -165,7 +164,64 @@ const exercises = [
       'Lower the platform back to the starting position.',
     ],
     image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/Sled-45-degree-Leg-Press-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
-    video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ',
+    video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ'
+  },
+  {
+    name: 'Lat Pulldown',
+    workout_type: 'Back',
+    description: 'An upper body exercise that targets the back and biceps.',
+    steps: [
+      'Sit at a lat pulldown machine with your hands shoulder-width apart.',
+      'Pull the bar down to your chest, then slowly release it back up to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/wide-grip-lat-pull-down-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=7JnP8dFbS14'
+  },
+  {
+    name: 'Seated Leg Curl',
+    workout_type: 'Legs',
+    description: 'A lower body exercise that targets the hamstrings.',
+    steps: [
+      'Sit on a leg curl machine with your legs extended.',
+      'Curl the weight up by bending your knees, then lower it back down to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/10/seated-leg-curl-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=Orxowest56U'
+  },
+  {
+    name: 'Dumbbell Hammer Curl',
+    workout_type: 'Arms',
+    description: 'An upper body exercise that targets the biceps.',
+    steps: [
+      'Stand with a dumbbell in each hand at your sides.',
+      'Curl the dumbbells up to your shoulders, keeping your palms facing each other.',
+      'Lower the dumbbells back to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/11/Dumbbell-Hammer-Curl-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=OPqe0kCxmR8'
+  },
+  {
+    name: 'Leg Extension',
+    workout_type: 'Legs',
+    description: 'A lower body exercise that targets the quadriceps.',
+    steps: [
+      'Sit on a leg extension machine with your legs bent at 90 degrees.',
+      'Extend your legs to lift the weight, then lower them back down to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2016/05/lever-leg-extension-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=4ZDm5EbiFI8'
+  },
+  {
+    name: 'Skull Crusher',
+    workout_type: 'Arms',
+    description: 'An upper body exercise that targets the triceps.',
+    steps: [
+      'Lie on a bench with a barbell or dumbbells in your hands.',
+      'Extend your arms straight up over your chest.',
+      'Bend your elbows to lower the weight towards your forehead, then press it back up to the starting position.',
+    ],
+    image: 'https://cdn-0.weighttraining.guide/wp-content/uploads/2018/11/Barbell-skull-crusher-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4',
+    video: 'https://www.youtube.com/watch?v=d_KZxkY_0cM'
   }
 ];
 
