@@ -69,3 +69,31 @@ exports.logout = (req, res, next) => {
     next(err);
   }
 };
+
+// Update user profile
+exports.updateProfile = async (req, res, next) => {
+  const { age, sex, weight, height } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    let user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    user.age = age || user.age;
+    user.sex = sex || user.sex;
+    user.weight = weight || user.weight;
+    user.height = height || user.height;
+
+    await user.save();
+
+    res.status(200).json({ msg: 'Profile updated successfully', user });
+  } catch (err) {
+    next(err);
+  }
+};
