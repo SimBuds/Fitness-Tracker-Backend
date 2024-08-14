@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
 const connectDB = require('./config/db');
+
 const userRoutes = require('./routes/userRoutes');
 const exerciseRoutes = require('./routes/exerciseRoutes');
 const workoutRoutes = require('./routes/workoutRoutes');
+
 const errorHandler = require('./middleware/errorHandler');
 const helmet = require('helmet');
 const morgan = require('morgan');
